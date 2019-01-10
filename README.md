@@ -3,6 +3,7 @@
 All Era Swap projects related Smart Contract
 
 <b>Preface</b>
+
 The smart contract for TimeAlly staking platform is completed which
 includes
 ● Eraswap Token Contract
