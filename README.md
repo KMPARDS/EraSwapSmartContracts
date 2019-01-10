@@ -1,6 +1,6 @@
 # EraSwapSmartContract
 
-All Era Swap projects related Smart Contract
+All Smart Contracts are used in Era Swap projects.
 
 <b>Preface</b>
 
