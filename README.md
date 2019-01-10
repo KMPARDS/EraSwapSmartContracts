@@ -16,7 +16,7 @@ includes
 ● You can also see the NRTReleased by watching each address which is fed into etherscan.
 
 <b>EraSwapToken.sol</b><br>
-
+ 
 Name: Era Swap Token
 Initial Supply : 910000000 EST
 Total supply( in 50 years ) : 9100000000 EST
