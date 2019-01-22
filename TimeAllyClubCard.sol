@@ -116,6 +116,7 @@ contract  AcceptEth is Ownable, usingOraclize{
 
     struct Buyer {
         uint balance;
+        uint256 ETHtoUSD;
         string cardtype;
         uint256 timestamp;
     }
@@ -144,6 +145,7 @@ contract  AcceptEth is Ownable, usingOraclize{
         balance[msg.sender] += msg.value;
 	    var Buyer = buyers[msg.sender];
 	    Buyer.balance = msg.value;
+	    Buyer.ETHtoUSD = ETHUSD;
 	    if(msg.value == silvercardinether*10**14)
 	        Buyer.cardtype = 'silvercard';
 	    else if( msg.value == goldcardinether*10**14 )
@@ -209,8 +211,8 @@ contract  AcceptEth is Ownable, usingOraclize{
        return vault.deposited(_user);
    }
 
-   function getInfo(address buyer) view public returns(uint, string, uint256){
-	return (buyers[buyer].balance, buyers[buyer].cardtype, buyers[buyer].timestamp);
+   function getInfo(address buyer) view public returns(uint, string, uint256, uint256){
+	return (buyers[buyer].balance, buyers[buyer].cardtype, buyers[buyer].timestamp, buyers[buyer].ETHtoUSD);
 
    }
 
