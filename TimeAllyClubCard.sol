@@ -157,6 +157,7 @@ contract  AcceptEth is Ownable, usingOraclize{
     }
     
     function updatePrice(){
+       if(msg.sender != owner && now-lastUpdateTime < 1 hours) revert();
        if (oraclize_getPrice("URL") > this.balance) {
            LogNewOraclizeQuery("Oraclize query was NOT sent, please add some ETH to cover for the query fee");
        } else {
@@ -207,7 +208,7 @@ contract  AcceptEth is Ownable, usingOraclize{
         return true;
     }
     
-    function getInfoOfUser(address _user)public view returns(uint256){
+    function getInfoOfUser(address _user)view public returns(uint256){
        return vault.deposited(_user);
    }
 
