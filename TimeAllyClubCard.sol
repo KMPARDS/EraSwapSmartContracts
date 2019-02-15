@@ -73,6 +73,11 @@ contract Ownable {
   }
 
 }
+/**
+ * @title vault
+ * @dev The vault contract has an wallet address where ether goes after withdrawal and provides 
+ * facility to store incoming ethers in a smart contract, which owner call and withdraw the funds
+ */
 contract Vault is Ownable {
     using SafeMath for uint256;
 
@@ -80,18 +85,31 @@ contract Vault is Ownable {
     address public wallet;
    
     event Withdrawn(address _wallet);
-         
+    
+    /**
+     * @dev The Vault constructor sets the `wallet` address where
+     * ether get transferred after withdrawal
+     * @param _wallet The address for ethers to get transaferred after withdrawal
+     */
     constructor (address _wallet) public {
         require(_wallet != address(0));
         wallet = _wallet;
     }
-
+    
+    /**
+     * @dev Transfer the ethers payable at the contarct to Vault
+     * @param investor The address for sender
+     */
     function deposit(address investor) public onlyOwner  payable{
         
         deposited[investor] = deposited[investor].add(msg.value);
         
     }
     
+    /**
+     * @dev Allows the current owner to withdraw from the Vault
+     * @param investor The address for sender
+     */
     function withdrawToWallet() onlyOwner public{
     
     wallet.transfer(address(this).balance);
@@ -99,7 +117,7 @@ contract Vault is Ownable {
   }
 }
 
-contract  AcceptEth is Ownable, usingOraclize{
+contract  TimeAllyClubCard is Ownable, usingOraclize{
     using SafeMath for uint;
     
     address public owner;
@@ -181,43 +199,71 @@ contract  AcceptEth is Ownable, usingOraclize{
         gasPrice = _gasPriceInWei;
     }
     
+    /**
+     * @dev Allows the current owner to change the value of silver card
+     * @param _value The value for silver card
+     */ 
     function silverCardChangeValue(uint256 _value) public onlyOwner{
         
         silvercard = _value;
         silvercardinether = silvercard*10**8/ETHUSD;
     }
     
+    /**
+     * @dev Allows the current owner to change the value of Gold card
+     * @param _value The value for Gold card
+     */
     function goldCardChangeValue(uint256 _value) public onlyOwner{
         
         goldcard = _value;
         goldcardinether = goldcard*10**8/ETHUSD;
     }
     
+    /**
+     * @dev Allows the current owner to change the value of Platinum card
+     * @param _value The value for Platinum card
+     *
     function platinumCardChangeValue(uint256 _value) public onlyOwner{
         
         platinumcard = _value;
         platinumcardinether = platinumcard*10**8/ETHUSD;
     }
     
+    /**
+     * @dev Allows the current owner to transfer gas amount to the smart contract
+     */
     function gasFeeTank() public payable onlyOwner{
         balance[msg.sender] += msg.value;
     }
     
+    /**
+     * @dev Allows the current owner to withdraw Gas Fee
+     */
     function withdrawGasFee () public onlyOwner returns(bool res) {
         owner.transfer(address(this).balance);
         return true;
     }
     
+    /**
+     * @dev Allows to retrive ETH deposited by the user
+     * @param _user The address of the user
+     */
     function getInfoOfUser(address _user)view public returns(uint256){
        return vault.deposited(_user);
    }
-
+   
+   /**
+    * @dev Allows to retrive the purchase history for the user
+    * @param buyer The address of the user
+    */
    function getInfo(address buyer) view public returns(uint, string, uint256, uint256){
 	return (buyers[buyer].balance, buyers[buyer].cardtype, buyers[buyer].timestamp, buyers[buyer].ETHtoUSD);
 
    }
 
-    //Allowing owner to transfer the  money rasied to the wallet address
+    /**
+     * @dev Allows the current owner to withdraw from the Vault
+     */
     function withDrawFunds()public onlyOwner{
             
         vault.withdrawToWallet();
