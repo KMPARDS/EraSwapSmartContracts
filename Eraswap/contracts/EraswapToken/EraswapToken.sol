@@ -376,7 +376,7 @@ contract CappedToken is MintableToken {
     address _to,
     uint256 _amount
   )
-    internal
+    public
     returns (bool)
   {
     require(totalSupply_.add(_amount) <= cap,"Amount minted should be within cap");
@@ -387,12 +387,16 @@ contract CappedToken is MintableToken {
 }
 
 contract EraswapERC20 is DetailedERC20, BurnableToken, CappedToken {
-    
+  string private name = "Eraswap";
+  string private symbol = "EST";
+  uint8 private decimals = 18;
+  uint256 private cap = 9100000000000000000000000000;
+
   /**
   * @dev Constructor
   */
 
-  constructor() DetailedERC20("Eraswap", "EST", 18) public CappedToken(9100000000000000000000000000)  {
+  constructor() DetailedERC20("Eraswap", "EST", 18) public CappedToken(cap)  {
     mint(msg.sender, 910000000000000000000000000);
   }
 
@@ -636,7 +640,7 @@ contract EraswapToken is PausableEraswap {
     * @dev Throws if caller is not TimeAlly 
     */
     modifier OnlyTimeAlly() {
-      require(msg.sender == TimeAlly,"Only TimeAlly is authorised");
+      require(msg.sender == TimeAlly,'Only TimeAlly is authorised');
       _;
     }
 
