@@ -2,7 +2,6 @@ The function provides a constructor to add the timeAlly address to the contract.
 └ 	<Constructor> 	Public exclamation 	stop_sign 	
 
 
-
 The contract provides function to add and remove a loan. The functions add it to active loanlista and removes from it respectively.
 └ 	AddLoan 	Public exclamation 	stop_sign 	OnlyTimeAlly
 └ 	RemoveLoan 	Public exclamation 	stop_sign 	OnlyTimeAlly
