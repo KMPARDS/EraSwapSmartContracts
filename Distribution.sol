@@ -132,10 +132,6 @@ contract EraswapDistribution is Ownable {
         return true;
     }
     
-    function viewrewards() public view returns(uint256 curatorreward, uint256 timetraderreward, uint256 dayswappersreward, uint256 powertokenreward, uint256 buzcaferewards) {
-        return (distributionDetails[msg.sender].curatorreward, distributionDetails[msg.sender].timetraderreward, distributionDetails[msg.sender].dayswappersreward, distributionDetails[msg.sender].powertokenreward, distributionDetails[msg.sender].buzcaferewards);
-    }
-    
     function claimrewards() public {
         require((now - lastrequestedtime[msg.sender]) > 30 days, "30 days not completed");
         uint256 totalrewards= distributionDetails[msg.sender].curatorreward.add(distributionDetails[msg.sender].timetraderreward).add(distributionDetails[msg.sender].dayswappersreward).add(distributionDetails[msg.sender].powertokenreward).add(distributionDetails[msg.sender].buzcaferewards);
