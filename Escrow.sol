@@ -43,7 +43,6 @@ contract Timeswappers {
 
     mapping(address => Project[]) public buyerDatabase;
     mapping(address => TransactionStruct[]) public sellerDatabase;
-    mapping(address => TransactionStruct[]) public escrowDatabase;
     mapping(address => Curators) public curatorDatabase;
     mapping(address => uint) public Funds;
     
@@ -84,7 +83,6 @@ contract Timeswappers {
         currentTransaction.buyer = msg.sender;
         currentTransaction.buyer_nounce = buyerDatabase[msg.sender].length;
         sellerDatabase[sellerAddress].push(currentTransaction);
-        //escrowDatabase[escrowAddress].push(currentTransaction);
         buyerDatabase[msg.sender].push(currentEscrow);
 
         return true;
@@ -156,24 +154,6 @@ contract Timeswappers {
             statuses[i] = checkStatus(buyers[i], sellerDatabase[sellerAddress][startId + i].buyer_nounce);
         }
         return (buyers, amounts, statuses);
-    }
-
-    function escrowHistory(address inputAddress, uint startID, uint numToLoad) view public returns(address[] memory, address[] memory, uint[] memory, bytes32[] memory) {
-
-        address[] memory buyers = new address[](numToLoad);
-        address[] memory sellers = new address[](numToLoad);
-        uint[] memory amounts = new uint[](numToLoad);
-        bytes32[] memory statuses = new bytes32[](numToLoad);
-
-        for (uint i = 0; i < numToLoad; i++) {
-            if (i >= escrowDatabase[inputAddress].length)
-                break;
-            buyers[i] = escrowDatabase[inputAddress][startID + i].buyer;
-            sellers[i] = buyerDatabase[buyers[i]][escrowDatabase[inputAddress][startID + i].buyer_nounce].seller;
-            amounts[i] = buyerDatabase[buyers[i]][escrowDatabase[inputAddress][startID + i].buyer_nounce].amount;
-            statuses[i] = checkStatus(buyers[i], escrowDatabase[inputAddress][startID + i].buyer_nounce);
-        }
-        return (buyers, sellers, amounts, statuses);
     }
 
     function checkStatus(address buyerAddress, uint nounce) view public returns(bytes32) {
