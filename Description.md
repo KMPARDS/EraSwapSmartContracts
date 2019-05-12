@@ -33,7 +33,7 @@ https://github.com/KMPARDS/EraSwapSmartContracts/blob/latestfiles/Projects/Erasw
 Graph:
 https://github.com/KMPARDS/EraSwapSmartContracts/blob/latestfiles/Projects/Eraswap/contracts/EraswapToken/Documentation/EraswapTokengraph.png
 
-Structure:
+inheritance:
 https://github.com/KMPARDS/EraSwapSmartContracts/blob/latestfiles/Projects/Eraswap/contracts/EraswapToken/Documentation/EraswapToken.png
 
 
@@ -74,7 +74,7 @@ https://github.com/KMPARDS/EraSwapSmartContracts/blob/latestfiles/Projects/Erasw
 Description Report:
 https://github.com/KMPARDS/EraSwapSmartContracts/blob/latestfiles/Projects/Eraswap/contracts/TimeAlly/Documentation/TimeAlly/TimeAllyMDReport.md
 
-Structure:
+inheritance:
 https://github.com/KMPARDS/EraSwapSmartContracts/blob/latestfiles/Projects/Eraswap/contracts/TimeAlly/Documentation/TimeAlly/TimeAlly.png
 
 
