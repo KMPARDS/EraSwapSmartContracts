@@ -93,8 +93,6 @@ contract Timeswappers {
         if (specifier == 0) return (buyerDatabase[inputAddress].length);
 
         else if (specifier == 1) return (sellerDatabase[inputAddress].length);
-
-        else return (escrowDatabase[inputAddress].length);
     }
 
     function getSpecificTransaction(address inputAddress, uint switcher, uint ID) view public returns(address, address, address[] memory, uint, bytes32, bytes32) {
@@ -108,11 +106,6 @@ contract Timeswappers {
         {
             currentEscrow = buyerDatabase[sellerDatabase[inputAddress][ID].buyer][sellerDatabase[inputAddress][ID].buyer_nounce];
             status = checkStatus(currentEscrow.buyer, sellerDatabase[inputAddress][ID].buyer_nounce);
-        } else if (switcher == 2)
-
-        {
-            currentEscrow = buyerDatabase[escrowDatabase[inputAddress][ID].buyer][escrowDatabase[inputAddress][ID].buyer_nounce];
-            status = checkStatus(currentEscrow.buyer, escrowDatabase[inputAddress][ID].buyer_nounce);
         }
 
         return (currentEscrow.buyer, currentEscrow.seller, currentEscrow.curators, currentEscrow.amount, status, currentEscrow.note);
