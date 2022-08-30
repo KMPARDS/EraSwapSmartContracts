@@ -37,7 +37,7 @@
     "ganache-cli": "6.1.0",
     "gulp": "^3.9.1",
     "gulp-sequence": "^1.0.0",
-    "moment-timezone": "^0.5.23",
+    "moment-timezone": "^0.5.35",
     "pify": "^4.0.1",
     "solidity-coverage": "^0.5.4",
     "solium": "^1.1.8",
