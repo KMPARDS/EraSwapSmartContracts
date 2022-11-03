@@ -35,7 +35,7 @@
     "ethereumjs-wallet": "^0.6.2",
     "ethjs-abi": "^0.2.1",
     "ganache-cli": "6.1.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-sequence": "^1.0.0",
     "moment-timezone": "^0.5.23",
     "pify": "^4.0.1",
